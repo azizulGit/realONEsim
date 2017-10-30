@@ -1,0 +1,18 @@
+Stats for scenario MargalhoTutorial
+sim_time: 86400.0000
+requests sent: 0
+requests received: 0
+responses sent: 0
+responses received: 0
+requests reshog sent: 0
+requests reshog received: 0
+responses reshog sent: 0
+responses reshog received: 0
+unidirectional sent: 0
+unidirectional received: 0
+request delivery prob: 0.0000
+response delivery prob: 0.0000
+request/response success prob: 0.0000
+request reshog delivery prob: 0.0000
+response reshog delivery prob: 0.0000
+request/response reshog success prob: 0.0000

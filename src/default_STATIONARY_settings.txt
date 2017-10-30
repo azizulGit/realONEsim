@@ -1,0 +1,149 @@
+#
+# Default settings for the simulation
+#
+## Scenario settings
+
+Scenario.name = SimpleTESTsibr
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+
+# 43200s == 24h
+Scenario.endTime = 86400
+BLE.type = SimpleBroadcastInterface
+
+#1Mbps=75kbps
+BLE.transmitSpeed = 75k
+
+BLE.transmitRange = 30
+
+
+Scenario.nrofHostGroups = 4
+
+
+
+Group.bufferSize = 31
+Group.routeType = 1
+Group.router = SprayInformationBasedRouter
+SprayInformationBasedRouter.nrofCopies = 3
+Group.waitTime = 10, 30
+Group.speed = 1, 3
+Group.nrofInterfaces = 1
+Group.interface1 = BLE
+
+
+Group1.groupID = DENVpatients_
+Group1.nrofHosts = 1
+Group1.movementModel = StationaryMovement
+# Group1.nodeLocation = 12.1002765647717, 685.5269697447313
+#Group1.coord = 12.1002765647717, 685.5269697447313
+# Y = Maior valor do Y do connection point - valor do Y daqui (768-685)
+
+Group1.nodeLocation = 12, 83
+# Group1.okMaps = 1
+
+Group2.groupID= Street_
+Group2.nrofHosts = 10
+#Group2.movementModel = MapRouteMovement
+Group2.movementModel = ShortestPathMapBasedMovement
+#Group2.routeFile= data/my_tutorial/streets.wkt
+Group2.okMaps = 2
+
+Group3.groupID= Avenue_
+Group3.nrofHosts = 10
+# Group3.movementModel = MapRouteMovement
+Group3.movementModel = ShortestPathMapBasedMovement
+#Group3.routeFile= data/my_tutorial/avenues.wkt
+Group3.okMaps = 1
+
+Group4.groupID = Hospital_
+Group4.nrofHosts = 1
+Group4.movementModel = StationaryMovement
+#Group4.nodeLocation = 744.9317350708827, 134.36010865409426
+Group4.nodeLocation = 744, 634
+# Group4.coord = 744.9317350708827, 134.36010865409426
+# Group4.okMaps = 4
+
+#----------------------------------------------------------------------------------------------
+MapBasedMovement.nrofMapFiles = 3
+MapBasedMovement.mapFile1 = data/my_tutorial/avenues.wkt
+MapBasedMovement.mapFile2 = data/my_tutorial/streets.wkt
+MapBasedMovement.mapFile3 = data/my_tutorial/connection_lines.wkt
+
+#----------------------------------------------
+
+# How many event generators
+Events.nrof = 2
+#Class of the first event generator AND response message event generator
+Events1.class = MessageEventGenerator
+
+#--------------------------------------
+Events1.interval = 10, 20
+
+#------------------------ -------------
+Events1.size = 20, 20
+
+#----------------------------------------------------------------
+Events1.hosts = 0, 22
+
+#-----------------------------------------------
+Events1.prefix = A
+
+#----------------------Event 2 -MessageCreateEvent---------------------------
+Events2.size = 10
+Events2.responseSize = 2
+
+#---------------------------
+MovimentModel.rngSeed = 1
+# MovimentModel.worldSize = 10000, 10000
+MovementModel.worldSize = 4500, 3400
+MovimentModel.warmup = 10
+#---------------------------------------------    8895-2450----------------
+#----------------------------
+Report.nrofReports = 12
+#---------------------------
+Report.warmup = 0
+Report.granularity = 1
+#------------------------------
+Report.reportDir = reports/DENGUE2nd
+
+Report.report1 = MessageStatsReport
+Report.report2 = DeliveredMessagesReport
+Report.report3 = ContactsPerHourReport
+Report.report4 = CreatedMessagesReport
+Report.report5 = DistanceDelayReport
+Report.report6 = MessageLocationReport
+MessageLocationReport.granularity = 1
+MessageLocationReport.messages = 1
+Report.report7 = MessageGraphvizReport
+Report.report8 = MessageDeliveryReport
+Report.report9 = MessageDelayReport
+Report.report10 = MessageReport
+Report.report11 = EventLogReport
+Report.report12 = ResourceManagementAppReporter
+
+
+#------------------------------------------------
+
+
+
+## Optimization settings -- these affect the speed of the simulation
+## see World class for details.
+Optimization.cellSizeMult = 2
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+
+## GUI settings
+
+# GUI underlay image settings
+GUI.UnderlayImage.fileName = data/my_tutorial/map.png
+# Image offset in pixels (x, y)
+GUI.UnderlayImage.offset = 64, 20
+# Scaling factor for the image
+GUI.UnderlayImage.scale = 4.75
+# Image rotation (radians)
+GUI.UnderlayImage.rotate = -0.015
+
+# how many events to show in the log panel (default = 30)
+GUI.EventLogPanel.nrofEvents = 100
+# Regular Expression log filter (see Pattern-class from the Java API for RE-matching details)
+#GUI.EventLogPanel.REfilter = .*p[1-9]<->p[1-9]$

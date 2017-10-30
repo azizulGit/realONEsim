@@ -1,0 +1,15 @@
+Scenario.name = EpidemicUtility
+
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+# 43200s == 12h
+Scenario.endTime = 43200
+
+Group.router = EpidemicUtilityRouter
+EpidemicUtilityRouter.nrofCopies = 3
+
+# "Bluetooth" interface for all nodes
+btInterface.type = SimpleBroadcastInterface
+# Transmit speed of 2 Mbps = 250kBps
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10

@@ -1,0 +1,20 @@
+Message stats for scenario MargalhoTutorial
+sim_time: 9924.7000
+created: 689
+started: 449
+relayed: 383
+aborted: 66
+dropped: 449
+removed: 0
+delivered: 101
+delivery_prob: 0.1466
+response_prob: 0.0000
+overhead_ratio: 2.7921
+latency_avg: 2775.7950
+latency_med: 2558.3000
+hopcount_avg: 1.3267
+hopcount_med: 1
+buffertime_avg: 4805.1514
+buffertime_med: 4791.0000
+rtt_avg: NaN
+rtt_med: NaN
