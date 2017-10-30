@@ -1,0 +1,162 @@
+#
+# Default settings for the simulation
+#
+## Scenario settings
+
+Scenario.name = TEST_9/10
+#Scenario.name = 3copySIBR
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+
+# 43200s == 24h
+Scenario.endTime = 43200
+#Scenario.endTime = 86400
+BLE.type = SimpleBroadcastInterface
+
+#1Mbps=175kbps
+BLE.transmitSpeed = 175k
+
+BLE.transmitRange = 100
+
+
+Scenario.nrofHostGroups = 3
+
+
+
+Group.bufferSize = 5M
+Group.routeType = 1
+#################################
+#Group.router = ProphetRouter
+#Group.router = EpidemicRouter
+#Group.router = SprayAndWaitRouter
+#SprayAndWaitRouter.nrofCopies = 2
+#SprayAndWaitRouter.binaryMode = false
+#Group.router = SprayAndWaitUtilityRouter
+#SprayAndWaitUtilityRouter.nrofCopies = [3;6]
+#Group.router = SprayUpdatedBasedRouter
+SprayInformationBasedRouter.nrofCopies = 3
+SprayInformationBasedRouter.binaryMode = false
+#ProphetRouter.secondsInTimeUnit = 30
+#########################################
+Group.waitTime = 10, 30
+#Group.waitTime = 0, 120
+Group.speed = 0.2, 0.5
+Group.nrofInterfaces = 1
+Group.interface1 = BLE
+
+###########################################################################################
+Group1.groupID = DENV_
+Group1.nrofHosts = 1
+#Group1.movementModel = MapBasedMovement
+Group1.movementModel = StationaryMovement
+# Group1.coord = 5348.0863478493575,2109.8347771391796
+# Y = Maior valor do Y do connection point - valor do Y daqui (768-685)
+Group1.nodeLocation = 3348,2982
+Group1.okMaps = 1
+###########################################################################################
+Group2.groupID= P_
+Group2.nrofHosts = 90
+Group2.movementModel = ShortestPathMapBasedMovement
+#Group2.routeFile= data/my_di/mapDesailmu.wkt
+Group2.okMaps = 1
+###########################################################################################
+
+Group3.groupID = Hospital_
+Group3.nrofHosts = 1
+#Group3.bufferSize = 10M
+Group3.movementModel = StationaryMovement
+Group3.nodeLocation = 5602,2241
+# Group3.coord = 6555.999140788017,3409.4032433121506
+Group3.okMaps = 1
+###########################################################################################
+#----------------------------------------------------------------------------------------------
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/my_kchcust/kch_custom_size.wkt
+
+
+#----------------------------------------------
+
+# How many event generators
+Events.nrof = 2
+#Class of the first event generator AND response message event generator
+Events1.class = MessageEventGenerator
+
+#--------------------------------------
+#Events1.interval = 10, 20
+#Events1.interval = 25,35
+#Every 5mins in real time = 75sec sim time--
+Events1.interval = 75,150
+#Events1.interval = 150,300
+
+
+#------------------------ -------------
+#Events1.size = 10, 10
+#Events1.size = 40,50
+Events1.size = 50k,500k
+#----------------------------------------------------------------
+Events1.hosts = 0,1
+Events1.tohosts = 91,92
+
+#-----------------------------------------------
+Events1.prefix = A
+
+#----------------------Event 2 -MessageCreateEvent---------------------------
+
+Events2.size = 10
+Events2.responseSize = 2
+
+#---------------------------
+MovementModel.rngSeed = 1
+# MovimentModel.worldSize = 10000, 10000
+MovementModel.worldSize = 8500, 8500
+MovementModel.warmup = 10
+#---------------------------------------------    8895-2450----------------
+#----------------------------
+Report.nrofReports = 1
+#---------------------------
+Report.warmup = 0
+Report.granularity = 1
+#------------------------------
+Report.reportDir = reports/9_10
+
+Report.report1 = MessageStatsReport
+#Report.report2 = DeliveredMessagesReport
+#Report.report3 = ContactsPerHourReport
+#Report.report4 = CreatedMessagesReport
+#Report.report5 = DistanceDelayReport
+#Report.report6 = MessageLocationReport
+#MessageLocationReport.granularity = 1
+#MessageLocationReport.messages = 1
+#Report.report7 = MessageGraphvizReport
+#Report.report8 = MessageDeliveryReport
+#Report.report9 = MessageDelayReport
+#Report.report10 = MessageReport
+#Report.report11 = EventLogReport
+#Report.report12 = MovementNs2Report
+
+
+#------------------------------------------------
+
+
+
+## Optimization settings -- these affect the speed of the simulation
+## see World class for details.
+Optimization.cellSizeMult = 2
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+
+## GUI settings
+
+# GUI underlay image settings
+GUI.UnderlayImage.fileName = data/my_di/mapDesailmu.png
+# Image offset in pixels (x, y)
+GUI.UnderlayImage.offset = 64, 20
+# Scaling factor for the image
+GUI.UnderlayImage.scale = 4.75
+# Image rotation (radians)
+GUI.UnderlayImage.rotate = -0.015
+
+# how many events to show in the log panel (default = 30)
+GUI.EventLogPanel.nrofEvents = 100
+# Regular Expression log filter (see Pattern-class from the Java API for RE-matching details)
+#GUI.EventLogPanel.REfilter = .*p[1-9]<->p[1-9]$
